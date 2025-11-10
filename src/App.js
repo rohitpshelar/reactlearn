@@ -9,7 +9,7 @@ import Fuel from './components/FuelRate';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/reactlearn">
         <Navbar />
         <Routes>
           <Route path="/textform" element={<Textform title={"Text Converter"} />} />
