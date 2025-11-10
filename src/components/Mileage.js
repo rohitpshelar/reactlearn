@@ -10,9 +10,16 @@ export default function Mileage(props) {
   const [result, setResult] = useState(null);
   const [total, setTotal] = useState(null);
   const [error, setError] = useState(null);
+  const [petrol, setPetrol] = useState(null);
+  const [petrolNeeded, setPetrolNeeded] = useState(null);
+  const [Tax, setTax] = useState(null);
+  const [ActFuelCost, setActFuelCost] = useState(null);
+
+
   
 
   const handleClick = () => {
+    
     const kmVal = parseFloat(km);
     const priceVal = parseFloat(price);
     const avgVal = parseFloat(average);
@@ -21,13 +28,30 @@ export default function Mileage(props) {
       const fuelUsed = kmVal / avgVal;
       const cost = fuelUsed * priceVal;
       const perKmRate = cost / kmVal;
-      setTotal(cost.toFixed(2));
+      setTotal(cost.toFixed(0));
       setResult(perKmRate.toFixed(2));
+      setPetrolNeeded(km/average);
+      setActFuelCost(cost.toFixed(2)/(1+0.60));
+      setTax(cost.toFixed(2)- (cost.toFixed(2)/(1+0.60)));
       setError(null);
+    }
+    else if (!isNaN(kmVal) && !isNaN(avgVal) && avgVal !== 0) {
+      setPetrolNeeded(km/average);
+      setError(null);
+       setTotal(null);
+      setResult(null);
+      setPetrol(null);
+         setTax(null);
+      setActFuelCost(null);
+      
     } else {
-      setError('Invalid input');
+      setError('Insert any two values to calculate the third one correctly.');
       setTotal(null);
       setResult(null);
+      setPetrol(null);
+      setTax(null);
+      setActFuelCost(null);
+      setPetrolNeeded(null);
     }
   };
 
@@ -38,14 +62,24 @@ export default function Mileage(props) {
         <h2>Km</h2>
         <textarea className="input" value={km} onChange={(e) => setKm(e.target.value)} rows="1" />
         <h2>Price</h2>
-        <textarea className="input" value={price} onChange={(e) => setPrice(e.target.value)} rows="1" />
+        <textarea className="input" value={price} onChange={(e) => setPrice(e.target.value) } rows="1" />
         <h2>Average</h2>
-        <textarea className="input" value={average} onChange={(e) => setAverage(e.target.value)} rows="1" />
+        <textarea className="input" value={average}  onChange={(e) => setAverage(e.target.value)} rows="1" />
             <h3> </h3>
         <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
+
+        {petrolNeeded && <h3>Petrol Needed (in litres): {petrolNeeded.toFixed(2)} L</h3>}
         {result && <h3>Per Km Rate: ₹{result}</h3>}
-        {total && <h3>Total Cost: ₹{total}</h3>}
+        {total && <h3>Total Fuel Cost: ₹{total}</h3>}
+        {petrol && <h3>Petrol Needed (in litres): {petrol.toFixed(2)} L</h3>}
+        
+        {ActFuelCost && <h3>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(2)}</h3>}
+        {Tax && <h3>Tax Paid to Earn (₹{total}): ₹{(30/100)*total}</h3>}
+        {Tax && <h3>Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h3>}
+        {Tax && <h3>Total Tax Paid: ₹{((30/100)*total)+Tax}</h3>}
+        
         {error && <h3 style={{color: 'red'}}>{error}</h3>}
+        
       </div>
     </div>
   );
