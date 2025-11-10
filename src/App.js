@@ -12,9 +12,9 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/Textform" element={<Textform title={"Text Converter"} />} />
-          <Route path="/Mileage" element={<Mileage title={"Car Expense"} />} />
-          <Route path="/Fuel" element={<Fuel title={"Text Converter"} />} />
+          <Route path="/textform" element={<Textform title={"Text Converter"} />} />
+          <Route path="/mileage" element={<Mileage title={"Car Expense"} />} />
+          <Route path="/fuel" element={<Fuel title={"Text Converter"} />} />
         </Routes>
       </BrowserRouter>
     </>

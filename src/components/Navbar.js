@@ -12,13 +12,13 @@ export default function Navbar(props) {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="/Textform">Text Changer</a>
+            <a className="nav-link active" aria-current="page" href="/textform">Text Changer</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/Mileage">Mileage Calculator</a>
+            <a className="nav-link" href="/mileage">Mileage Calculator</a>
           </li>
            <li className="nav-item">
-            <a className="nav-link" href="/Fuel">Fuel</a>
+            <a className="nav-link" href="/fuel">Fuel</a>
           </li>
         </ul>
         {/* <form className="d-flex" role="search">
