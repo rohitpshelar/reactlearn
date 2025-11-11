@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/textform" element={<Textform title={"Text Converter"} />} />
           <Route path="/mileage" element={<Mileage title={"Car Expense"} />} />
-          <Route path="/fuel" element={<Fuel title={"Text Converter"} />} />
+          {/* <Route path="/fuel" element={<Fuel title={"Text Converter"} />} /> */}
         </Routes>
       </BrowserRouter>
     </>

@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f447cf03-3828-4861-a02e-1fbfb844a817" name="Changes" comment="state added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
-    </list>
+    <list default="true" id="f447cf03-3828-4861-a02e-1fbfb844a817" name="Changes" comment="mileage added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,11 +79,28 @@
       <option name="project" value="LOCAL" />
       <updated>1730448017838</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mileage added">
+      <option name="closed" value="true" />
+      <created>1762796770578</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762796770578</updated>
+    </task>
+    <task id="LOCAL-00004" summary="mileage added">
+      <option name="closed" value="true" />
+      <created>1762803975720</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762803975720</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="state added" />
-    <option name="LAST_COMMIT_MESSAGE" value="state added" />
+    <MESSAGE value="mileage added" />
+    <option name="LAST_COMMIT_MESSAGE" value="mileage added" />
   </component>
 </project>

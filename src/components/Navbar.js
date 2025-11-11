@@ -18,9 +18,9 @@ export default function Navbar(props) {
           <li className="nav-item">
             <Link className="nav-link" to="/mileage">Mileage Calculator</Link>
           </li>
-           <li className="nav-item">
+           {/* <li className="nav-item">
             <Link className="nav-link" to="/fuel">Fuel</Link>
-          </li>
+          </li> */}
         </ul>
         {/* <form className="d-flex" role="search">
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

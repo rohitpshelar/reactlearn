@@ -1,0 +1,12 @@
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Space between columns */
+  padding: 20px;
+}
+
+.left-column, .right-column {
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}

@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect } from 'react';
+import './component.css';
+import FuelRate from './FuelRate';
 
 // state
 
@@ -16,7 +18,12 @@ export default function Mileage(props) {
   const [ActFuelCost, setActFuelCost] = useState(null);
 
 
-  
+
+useEffect(() => {
+  if ((km || average || price)) {
+    handleClick();
+  }
+}, [km, average, price]);
 
   const handleClick = () => {
     
@@ -56,16 +63,20 @@ export default function Mileage(props) {
   };
 
   return (
-    <div className='component'>
-      <h1>{props.title}</h1>
-      <div className="mb-3">
-        <h2>Km</h2>
-        <textarea className="input" value={km} onChange={(e) => setKm(e.target.value)} rows="1" />
-        <h2>Price</h2>
-        <textarea className="input" value={price} onChange={(e) => setPrice(e.target.value) } rows="1" />
-        <h2>Average</h2>
-        <textarea className="input" value={average}  onChange={(e) => setAverage(e.target.value)} rows="1" />
-            <h3> </h3>
+    <div className='two-column-grid'>
+      
+      <div className="left-column">
+        <h1>{props.title}</h1>
+        <h2>Distance in km</h2>
+        <input className="input" value={km} onChange={(e) => setKm(e.target.value)} rows="1" />
+        <h2>Car Mileage</h2>
+        <input className="input" value={average}  onChange={(e) => setAverage(e.target.value)} rows="1" />
+        <h2>Fuel Price Per Liter</h2>
+        <input className="input" value={price} onChange={(e) => setPrice(e.target.value) } rows="1" />
+
+
+        
+        <h3/> 
         <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
 
         {petrolNeeded && <h3>Petrol Needed (in litres): {petrolNeeded.toFixed(2)} L</h3>}
@@ -74,13 +85,14 @@ export default function Mileage(props) {
         {petrol && <h3>Petrol Needed (in litres): {petrol.toFixed(2)} L</h3>}
         
         {ActFuelCost && <h3>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(2)}</h3>}
-        {Tax && <h3>Tax Paid to Earn (₹{total}): ₹{(30/100)*total}</h3>}
-        {Tax && <h3>Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h3>}
+        {Tax && <h3>30% Tax Paid to Earn (₹{total}): ₹{(30/100)*total}</h3>}
+        {Tax && <h3>60% Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h3>}
         {Tax && <h3>Total Tax Paid: ₹{((30/100)*total)+Tax}</h3>}
         
         {error && <h3 style={{color: 'red'}}>{error}</h3>}
         
       </div>
+      <div className="right-column"><FuelRate /></div>
     </div>
   );
 }

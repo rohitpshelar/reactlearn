@@ -4,6 +4,7 @@ const FuelPrices = () => {
   const [fuelData, setFuelData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedFuel, setSelectedFuel] = useState('');
 
   useEffect(() => {
     const fetchFuelPrices = async () => {
@@ -67,6 +68,8 @@ const FuelPrices = () => {
     );
   }
 
+
+
   return (
     <div className="fuel-prices">
       <h2>Today's Fuel Prices in {fuelData?.stateName}</h2>
@@ -95,6 +98,7 @@ const FuelPrices = () => {
       ) : (
         <p>No fuel price data available</p>
       )}
+     
     </div>
   );
 };
