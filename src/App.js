@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Mileage from './components/Mileage';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
-import Fuel from './components/FuelRate';
 
 function App() {
   return (

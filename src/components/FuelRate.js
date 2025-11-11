@@ -4,14 +4,13 @@ const FuelPrices = () => {
   const [fuelData, setFuelData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedFuel, setSelectedFuel] = useState('');
 
   useEffect(() => {
     const fetchFuelPrices = async () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         const response = await fetch(
           'https://daily-petrol-diesel-lpg-cng-fuel-prices-in-india.p.rapidapi.com/v1/fuel-prices/today/india/maharashtra',
           {
@@ -42,10 +41,10 @@ const FuelPrices = () => {
 
   // Helper function to get today's fuel prices
   const getTodayFuelPrices = () => {
-    if (!fuelData ) {
+    if (!fuelData) {
       return null;
     }
-    
+
     // Get the first entry (today's prices)
     return fuelData.fuel;
   };
@@ -74,31 +73,31 @@ const FuelPrices = () => {
     <div className="fuel-prices">
       <h2>Today's Fuel Prices in {fuelData?.stateName}</h2>
       <p className="date">Applicable on: {fuelData.applicableOn}</p>
-      
+
       {todayFuel ? (
         <div className="fuel-prices-grid">
           <div className="fuel-price-item">
             <h3>Petrol</h3>
             <p className="price">₹{todayFuel.petrol?.retailPrice || 'N/A'}</p>
-        
+
           </div>
-          
+
           <div className="fuel-price-item">
             <h3>Diesel</h3>
             <p className="price">₹{todayFuel.diesel?.retailPrice || 'N/A'}</p>
-           
+
           </div>
-          
+
           <div className="fuel-price-item">
             <h3>CNG</h3>
             <p className="price">₹{todayFuel.cng?.retailPrice || 'N/A'}</p>
-           
+
           </div>
         </div>
       ) : (
         <p>No fuel price data available</p>
       )}
-     
+
     </div>
   );
 };
