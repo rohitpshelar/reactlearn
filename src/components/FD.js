@@ -5,46 +5,44 @@ import React, { useState } from 'react'
 
 
 export default function FD(props) {
-  const [amount, setAmount] = useState('');
-  const [percent, setPercent] = useState('');
-        const [years, setYears] = useState('');
-        const [showSchedule, setShowSchedule] = useState(false);
+    const [amount, setAmount] = useState('');
+    const [percent, setPercent] = useState('');
+    const [years, setYears] = useState('');
+    const [showSchedule, setShowSchedule] = useState(false);
 
     const handleClick = () => {
         // show the computed schedule when user clicks
-        setShowSchedule(true);
-
     }
 
     const formatINR = (amount) => {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    minimumFractionDigits: 0, // Set to 2 if you want paise (.00)
-  }).format(amount);
-};
+    return new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 0, // Set to 2 if you want paise (.00)
+    }).format(amount);
+    };
 
-        const numericAmount = parseFloat(amount) || 0;
-        const numericPercent = parseFloat(percent) || 0;
-        const numericYears = parseInt(years, 10) || 0;
+    const numericAmount = parseFloat(amount) || 0;
+    const numericPercent = parseFloat(percent) || 0;
+    const numericYears = parseInt(years, 10) || 0;
 
-        const formattedPrice = formatINR(numericAmount);
-        // simple annual return on initial amount (not compounded)
-        const annualReturn = numericAmount * numericPercent / 100;
+    const formattedPrice = formatINR(numericAmount);
+    // simple annual return on initial amount (not compounded)
+    const annualReturn = numericAmount * numericPercent / 100;
 
-        // compute schedule only when requested and inputs valid
-        const schedule = [];
-        let runningPrincipal = numericAmount;
-        let totalInterest = 0;
-        if (showSchedule && numericAmount > 0 && numericPercent >= 0 && numericYears > 0) {
-            for (let y = 1; y <= numericYears; y++) {
-                const interestEarned = runningPrincipal * numericPercent / 100;
-                const ending = runningPrincipal + interestEarned;
-                schedule.push({ year: y, amount: runningPrincipal, interest: interestEarned, ending });
-                totalInterest += interestEarned;
-                runningPrincipal = ending; // compound for next year
-            }
+    // compute schedule only when requested and inputs valid
+    const schedule = [];
+    let runningPrincipal = numericAmount;
+    let totalInterest = 0;
+    if (years&& numericAmount > 0 && numericPercent >= 0 && numericYears > 0) {
+        for (let y = 1; y <= numericYears; y++) {
+            const interestEarned = runningPrincipal * numericPercent / 100;
+            const ending = runningPrincipal + interestEarned;
+            schedule.push({ year: y, amount: runningPrincipal, interest: interestEarned, ending });
+            totalInterest += interestEarned;
+            runningPrincipal = ending; // compound for next year
         }
+    }
 
     return (
         <>
@@ -75,7 +73,7 @@ export default function FD(props) {
                 {percent && years && <h3>Monthly compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount) /years) / 12).toFixed(2)}</h3>}
                 {percent && !years && <h3>Monthly Return: {(annualReturn / 12).toFixed(2)}</h3>}
 
-                {percent && years && <h3>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount)) / years / 365).toFixed(2)}</h3>}
+                {percent && years && <h3>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount) /years) / 365).toFixed(2)}</h3>}
                 {percent && !years && <h3>Daily Return: {(annualReturn / 365).toFixed(2)}</h3>}
 
                 {years && <h3>For {years} years, simple (non-compounded) return would be {formatINR(annualReturn * numericYears)}.</h3>}
