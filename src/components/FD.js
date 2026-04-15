@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 
+
 // state
 
 
@@ -8,11 +9,17 @@ export default function FD(props) {
     const [amount, setAmount] = useState('');
     const [percent, setPercent] = useState('');
     const [years, setYears] = useState('');
-    const [showSchedule, setShowSchedule] = useState(false);
+    // const [showSchedule, setShowSchedule] = useState(false);
 
     const handleClick = () => {
         // show the computed schedule when user clicks
     }
+
+    const handleInput = (e) => {
+    const raw = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    const formatted = new Intl.NumberFormat('en-IN').format(raw);
+    setAmount(raw === "" ? "" : formatted);
+    };
 
     const formatINR = (amount) => {
     return new Intl.NumberFormat('en-IN', {
@@ -22,7 +29,7 @@ export default function FD(props) {
     }).format(amount);
     };
 
-    const numericAmount = parseFloat(amount) || 0;
+    const numericAmount = parseFloat(amount.replaceAll(",", "")) || 0;
     const numericPercent = parseFloat(percent) || 0;
     const numericYears = parseInt(years, 10) || 0;
 
@@ -49,8 +56,7 @@ export default function FD(props) {
             <div className='component'>
                 <h1>{props.title} </h1>
                 <div className="mb-3">
-
-                    Amount<input className="input" value={amount} onChange={(e) => setAmount(e.target.value)} id="amount" rows="1"></input>
+                    Amount<input className="input" value={amount} onChange={handleInput} id="amount" rows="1"></input>
                 </div>
                 <div className="mb-3">
                     Interest Rate<input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" rows="1"></input>
@@ -67,17 +73,17 @@ export default function FD(props) {
                  {amount && <h3>Amount: {formattedPrice}</h3>}
                 {percent && <h3>Interest Rate: {percent}%</h3>}
 
-                {percent && years && <h3>Annual compounded Return: {formatINR(((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount) / years)}</h3>}
+                {percent && years && <h3>Annual compounded Return: {formatINR(((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) / years)}</h3>}
                 {percent && !years && <h3>Annual Return: {formatINR(annualReturn)}</h3>}
 
-                {percent && years && <h3>Monthly compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount) /years) / 12).toFixed(2)}</h3>}
+                {percent && years && <h3>Monthly compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) /years) / 12).toFixed(2)}</h3>}
                 {percent && !years && <h3>Monthly Return: {(annualReturn / 12).toFixed(2)}</h3>}
 
-                {percent && years && <h3>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount) /years) / 365).toFixed(2)}</h3>}
+                {percent && years && <h3>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) /years) / 365).toFixed(2)}</h3>}
                 {percent && !years && <h3>Daily Return: {(annualReturn / 365).toFixed(2)}</h3>}
 
                 {years && <h3>For {years} years, simple (non-compounded) return would be {formatINR(annualReturn * numericYears)}.</h3>}
-                {years && <h3>For {years} years, Interest compounded return would be {formatINR((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount)}</h3>}
+                {years && <h3>For {years} years, Interest compounded return would be {formatINR((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", ""))}</h3>}
 
                 {years && schedule.length > 0 && (
                     <div style={{ marginTop: 16 }}>
