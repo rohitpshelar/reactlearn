@@ -5,6 +5,7 @@ import Mileage from './components/Mileage';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import FD from './components/FD';
+import Rent from './components/Rent';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/textform" element={<Textform title={"Text Converter"} />} />
           <Route path="/mileage" element={<Mileage title={"Car Expense"} />} />
           <Route path="/FD" element={<FD title={"Fix Deposit"} />} />
+            <Route path="/Rent" element={<Rent title={"Rent Calculator"} />} />
           {/* <Route path="/fuel" element={<Fuel title={"Text Converter"} />} /> */}
         </Routes>
       </BrowserRouter>
