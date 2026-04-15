@@ -1,15 +1,9 @@
 import React, { useState } from 'react'
 
-
-
-// state
-
-
 export default function FD(props) {
     const [amount, setAmount] = useState('');
     const [percent, setPercent] = useState('');
     const [years, setYears] = useState('');
-    // const [showSchedule, setShowSchedule] = useState(false);
 
     const handleClick = () => {
         // show the computed schedule when user clicks
@@ -34,10 +28,8 @@ export default function FD(props) {
     const numericYears = parseInt(years, 10) || 0;
 
     const formattedPrice = formatINR(numericAmount);
-    // simple annual return on initial amount (not compounded)
     const annualReturn = numericAmount * numericPercent / 100;
 
-    // compute schedule only when requested and inputs valid
     const schedule = [];
     let runningPrincipal = numericAmount;
     let totalInterest = 0;
@@ -66,6 +58,7 @@ export default function FD(props) {
                 </div>
                 <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
             </div>
+            
             <div className="component">
                 <h1>
                     Details
@@ -73,19 +66,19 @@ export default function FD(props) {
                  {amount && <h3>Amount: {formattedPrice}</h3>}
                 {percent && <h3>Interest Rate: {percent}%</h3>}
 
-                {percent && years && <h3>Annual compounded Return: {formatINR(((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) / years)}</h3>}
-                {percent && !years && <h3>Annual Return: {formatINR(annualReturn)}</h3>}
+                {amount && percent && years && <h3>Annual compounded Return: {formatINR(((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) / years)}</h3>}
+                {amount && percent && !years && <h3>Annual Return: {formatINR(annualReturn)}</h3>}
 
-                {percent && years && <h3>Monthly compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) /years) / 12).toFixed(2)}</h3>}
-                {percent && !years && <h3>Monthly Return: {(annualReturn / 12).toFixed(2)}</h3>}
+                {amount && percent && years && <h3>Monthly compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) /years) / 12).toFixed(2)}</h3>}
+                {amount && percent && !years && <h3>Monthly Return: {(annualReturn / 12).toFixed(2)}</h3>}
 
-                {percent && years && <h3>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) /years) / 365).toFixed(2)}</h3>}
-                {percent && !years && <h3>Daily Return: {(annualReturn / 365).toFixed(2)}</h3>}
+                {amount && percent && years && <h3>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", "")) /years) / 365).toFixed(2)}</h3>}
+                {amount && percent && !years && <h3>Daily Return: {(annualReturn / 365).toFixed(2)}</h3>}
 
-                {years && <h3>For {years} years, simple (non-compounded) return would be {formatINR(annualReturn * numericYears)}.</h3>}
-                {years && <h3>For {years} years, Interest compounded return would be {formatINR((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", ""))}</h3>}
+                {amount && percent && years && <h3>For {years} years, simple (non-compounded) return would be {formatINR(annualReturn * numericYears)}.</h3>}
+                {amount && percent && years && <h3>For {years} years, Interest compounded return would be {formatINR((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount.replaceAll(",", ""))}</h3>}
 
-                {years && schedule.length > 0 && (
+                {amount && percent && years && schedule.length > 0 && (
                     <div style={{ marginTop: 16 }}>
                         <h3>Yearly Schedule</h3>
                         <table className="table">
@@ -116,8 +109,8 @@ export default function FD(props) {
                         </table>
                     </div>
                 )}
-             
             </div>
+
         </>
     )
 }
