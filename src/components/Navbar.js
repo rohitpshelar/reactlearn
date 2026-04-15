@@ -18,6 +18,9 @@ export default function Navbar(props) {
           <li className="nav-item">
             <Link className="nav-link" to="/mileage">Mileage Calculator</Link>
           </li>
+           <li className="nav-item">
+            <Link className="nav-link" to="/FD">Fix Deposit</Link>
+          </li>
            {/* <li className="nav-item">
             <Link className="nav-link" to="/fuel">Fuel</Link>
           </li> */}

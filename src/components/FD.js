@@ -1,0 +1,119 @@
+import React, { useState } from 'react'
+
+
+// state
+
+
+export default function FD(props) {
+  const [amount, setAmount] = useState('');
+  const [percent, setPercent] = useState('');
+        const [years, setYears] = useState('');
+        const [showSchedule, setShowSchedule] = useState(false);
+
+    const handleClick = () => {
+        // show the computed schedule when user clicks
+        setShowSchedule(true);
+
+    }
+
+    const formatINR = (amount) => {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0, // Set to 2 if you want paise (.00)
+  }).format(amount);
+};
+
+        const numericAmount = parseFloat(amount) || 0;
+        const numericPercent = parseFloat(percent) || 0;
+        const numericYears = parseInt(years, 10) || 0;
+
+        const formattedPrice = formatINR(numericAmount);
+        // simple annual return on initial amount (not compounded)
+        const annualReturn = numericAmount * numericPercent / 100;
+
+        // compute schedule only when requested and inputs valid
+        const schedule = [];
+        let runningPrincipal = numericAmount;
+        let totalInterest = 0;
+        if (showSchedule && numericAmount > 0 && numericPercent >= 0 && numericYears > 0) {
+            for (let y = 1; y <= numericYears; y++) {
+                const interestEarned = runningPrincipal * numericPercent / 100;
+                const ending = runningPrincipal + interestEarned;
+                schedule.push({ year: y, amount: runningPrincipal, interest: interestEarned, ending });
+                totalInterest += interestEarned;
+                runningPrincipal = ending; // compound for next year
+            }
+        }
+
+    return (
+        <>
+            <div className='component'>
+                <h1>{props.title} </h1>
+                <div className="mb-3">
+
+                    Amount<input className="input" value={amount} onChange={(e) => setAmount(e.target.value)} id="amount" rows="1"></input>
+                </div>
+                <div className="mb-3">
+                    Interest Rate<input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" rows="1"></input>
+                </div>
+                 <div className="mb-3">
+                    Years<input className="input" value={years} onChange={(e) => setYears(e.target.value)} id="years" rows="1"></input>
+                </div>
+                <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
+            </div>
+            <div className="component">
+                <h1>
+                    Details
+                </h1>
+                 {amount && <h3>Amount: {formattedPrice}</h3>}
+                {percent && <h3>Interest Rate: {percent}%</h3>}
+
+                {percent && years && <h3>Annual compounded Return: {formatINR(((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount) / years)}</h3>}
+                {percent && !years && <h3>Annual Return: {formatINR(annualReturn)}</h3>}
+
+                {percent && years && <h3>Monthly compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount) /years) / 12).toFixed(2)}</h3>}
+                {percent && !years && <h3>Monthly Return: {(annualReturn / 12).toFixed(2)}</h3>}
+
+                {percent && years && <h3>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount)) / years / 365).toFixed(2)}</h3>}
+                {percent && !years && <h3>Daily Return: {(annualReturn / 365).toFixed(2)}</h3>}
+
+                {years && <h3>For {years} years, simple (non-compounded) return would be {formatINR(annualReturn * numericYears)}.</h3>}
+                {years && <h3>For {years} years, Interest compounded return would be {formatINR((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount)-amount)}</h3>}
+
+                {years && schedule.length > 0 && (
+                    <div style={{ marginTop: 16 }}>
+                        <h3>Yearly Schedule</h3>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Amount (start)</th>
+                                    <th>Interest Earned</th>
+                                    <th>Amount (end)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {schedule.map(row => (
+                                    <tr key={row.year}>
+                                        <td>{row.year}</td>
+                                        <td>{formatINR(row.amount)}</td>
+                                        <td>{formatINR(row.interest)}</td>
+                                        <td>{formatINR(row.ending)}</td>
+                                    </tr>
+                                ))}
+                                <tr>
+                                    <td><strong>Totals</strong></td>
+                                    <td></td>
+                                    <td><strong>{formatINR(totalInterest)}</strong></td>
+                                    <td><strong>{formatINR(runningPrincipal)}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+             
+            </div>
+        </>
+    )
+}
