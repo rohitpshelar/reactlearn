@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Global spacing: make a small (2px) vertical gap between sibling elements.
+   This is safer than applying margin to every single element which can break
+   layout. If you really want 2px on all sides for every element use `* { margin:2px; }` */
+* {
+  box-sizing: border-box;
+}
+
+/* add 2px top margin between sibling elements */
+* + * {
+  margin-top: 1px;
+}
