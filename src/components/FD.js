@@ -46,17 +46,22 @@ export default function FD(props) {
     return (
         <>
             <div className='component'>
-                <h1>{props.title} </h1>
+                <h4>{props.title} </h4>
+                <div className="left-column">
                 <div className="mb-3">
-                    Amount :  <input className="input" value={amount} onChange={handleInput} id="amount" rows="1"></input>
+                    <label htmlFor="Amount">Amount :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input className="input" value={amount} onChange={handleInput} id="amount" rows="1"></input>
                 </div>
                 <div className="mb-3">
-                    Interest Rate : <input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" rows="1"></input>
+                    <label htmlFor="percent">Interest Rate :</label>
+                    <input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" rows="1"></input>
                 </div>
                 <div className="mb-3">
-                    Years : <input className="input" value={years} onChange={(e) => setYears(e.target.value)} id="years" rows="1"></input>
+                    <label htmlFor="years">Years :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input className="input" value={years} onChange={(e) => setYears(e.target.value)} id="years" rows="1"></input>
                 </div>
                 <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
+            </div>
             </div>
 
             <div >

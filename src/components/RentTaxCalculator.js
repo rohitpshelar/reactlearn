@@ -53,7 +53,7 @@ export default function RentTaxCalculator() {
 
   return (
     <div className="component">
-      <h1>Rent Tax Calculator ( New Regime )</h1>
+      <h3>Rent Tax Calculator(New Regime)</h3>
 
 <div className="left-column">
       <div className="mb-3" >
@@ -71,7 +71,7 @@ export default function RentTaxCalculator() {
       {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Annual Income should be in ( 4% - 6% ) : {(propertyValue.replaceAll(",", "") * 0.048).toFixed(0)} - {(propertyValue.replaceAll(",", "") * 0.072).toFixed(0)}.</div>}
       <h1>OR</h1>
       <div className="mb-3">
-        <label htmlFor="monthlyIncome">Enter Monthly Income (₹)</label>
+        <label htmlFor="monthlyIncome">Enter Monthly Income</label>
         <input
           id="monthlyIncome"
           className="input"

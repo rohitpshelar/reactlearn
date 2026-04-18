@@ -63,33 +63,38 @@ export default function Mileage(props) {
 
   return (
     // <div className='two-column-grid'>
-
+    <div className="component">
+      <h3>{props.title}</h3>
       <div className="left-column">
-        <h1>{props.title}</h1>
-        <h2>Distance in km</h2>
-        <input className="input" value={km} onChange={(e) => setKm(e.target.value)} rows="1" />
-        <h2>Car Mileage</h2>
-        <input className="input" value={average} onChange={(e) => setAverage(e.target.value)} rows="1" />
-        <h2>Fuel Price Per Liter</h2>
+        <div className="mb-3">
+          <label htmlFor="Distance">Distance (km)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+          <input className="input" value={km} onChange={(e) => setKm(e.target.value)} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="average">Car Mileage (km/l)</label>
+          <input className="input" value={average} onChange={(e) => setAverage(e.target.value)} rows="1" />
+        </div>
+        <div className="mb-3">
+        <label htmlFor="price">Fuel Price Per Liter</label>
         <input className="input" value={price} onChange={(e) => setPrice(e.target.value)} rows="1" />
-
-        <h3 />
-        <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
-
-        {petrolNeeded && <h6>Petrol Needed (in litres): {petrolNeeded.toFixed(2)} L</h6>}
-        {result && <h6>Per Km Rate: ₹{result}</h6>}
-        {total && <h6>Total Fuel Cost: ₹{total}</h6>}
-        {petrol && <h6>Petrol Needed (in litres): {petrol.toFixed(2)} L</h6>}
-
-        {ActFuelCost && <h6>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(2)}</h6>}
-        {Tax && <h6>30% Tax Paid to Earn (₹{total}): ₹{(30 / 100) * total}</h6>}
-        {Tax && <h6>60% Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h6>}
-        {Tax && <h6>Total Tax Paid: ₹{((30 / 100) * total) + Tax}</h6>}
-
-        {error && <h6 style={{ color: 'red' }}>{error}</h6>}
-
       </div>
-      // {/* <div className="right-column"><FuelRate /></div> */}
+      <h3 />
+      <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
+    </div>
+      { petrolNeeded && <h6>Petrol Needed (in litres): {petrolNeeded.toFixed(2)} L</h6> }
+  { result && <h6>Per Km Rate: ₹{result}</h6> }
+  { total && <h6>Total Fuel Cost: ₹{total}</h6> }
+  { petrol && <h6>Petrol Needed (in litres): {petrol.toFixed(2)} L</h6> }
+
+  { ActFuelCost && <h6>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(2)}</h6> }
+  { Tax && <h6>30% Tax Paid to Earn (₹{total}): ₹{(30 / 100) * total}</h6> }
+  { Tax && <h6>60% Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h6> }
+  { Tax && <h6>Total Tax Paid: ₹{((30 / 100) * total) + Tax}</h6> }
+
+  { error && <h6 style={{ color: 'red' }}>{error}</h6> }
+
+    </div >
+    // {/* <div className="right-column"><FuelRate /></div> */}
     // {/* </div> */}
   );
 }

@@ -26,16 +26,18 @@ export default function Rent(props) {
     return (
         <>
             <div className='component'>
-                <h1>{props.title} </h1>
+                <h3>{props.title} </h3>
+                <div className="left-column">
                 <div className="mb-3">
-                    Amount<input className="input" aria-label='Amount' value={amount} onChange={(e) => setAmount(handleAmount(e))} id="amount" rows="1"></input>
+                    Amount : <input className="input" aria-label='Amount' value={amount} onChange={(e) => setAmount(handleAmount(e))} id="amount" rows="1"></input>
                 </div>
                 <div className="mb-3">
-                    Months<input className="input" aria-label='Months' value={months} onChange={(e) => setMonths(e.target.value)} id="months" rows="1"></input>
+                    Months : <input className="input" aria-label='Months' value={months} onChange={(e) => setMonths(e.target.value)} id="months" rows="1"></input>
                 </div>
                 <div className="mb-3">
-                    Deposit<input className="input" aria-label='Deposit' value={deposit} onChange={(e) => setDeposit(handleAmount(e))} id="deposit" rows="1"></input>
+                    Deposit : <input className="input" aria-label='Deposit' value={deposit} onChange={(e) => setDeposit(handleAmount(e))} id="deposit" rows="1"></input>
                 </div>
+</div>
             </div>
 
             <div className="component">
