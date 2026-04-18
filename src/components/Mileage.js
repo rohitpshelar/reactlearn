@@ -86,10 +86,10 @@ export default function Mileage(props) {
   { total && <h6>Total Fuel Cost: ₹{total}</h6> }
   { petrol && <h6>Petrol Needed (in litres): {petrol.toFixed(2)} L</h6> }
 
-  { ActFuelCost && <h6>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(2)}</h6> }
-  { Tax && <h6>30% Tax Paid to Earn (₹{total}): ₹{(30 / 100) * total}</h6> }
-  { Tax && <h6>60% Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h6> }
-  { Tax && <h6>Total Tax Paid: ₹{((30 / 100) * total) + Tax}</h6> }
+  { ActFuelCost && <h6>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(0)}</h6> }
+  { Tax && <h6>30% Tax Paid to Earn (₹{total}): ₹{((30 / 100) * total).toFixed(0)}</h6> }
+  { Tax && <h6>60% Tax Paid for Pertol: ₹{Tax.toFixed(0)}</h6> }
+  { Tax && <h6>Total Tax Paid: ₹{(((30 / 100) * total) + Tax).toFixed(0)}</h6> }
 
   { error && <h6 style={{ color: 'red' }}>{error}</h6> }
 
