@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import FD from './components/FD';
 import Rent from './components/Rent';
-import TaxTable from './components/TaxTable';
+import RentTaxCalculator from './components/RentTaxCalculator';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/mileage" element={<Mileage title={"Car Expense"} />} />
           <Route path="/FD" element={<FD title={"Fix Deposit"} />} />
           <Route path="/Rent" element={<Rent title={"Rent Calculator"} />} />
-          <Route path="/TaxTable" element={<TaxTable />} />
+          <Route path="/RentTaxCalculator" element={<RentTaxCalculator />} />
         </Routes>
       </BrowserRouter>
     </>

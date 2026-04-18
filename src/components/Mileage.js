@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './component.css';
-import FuelRate from './FuelRate';
+// import FuelRate from './FuelRate';
 
 // state
 
@@ -62,7 +62,7 @@ export default function Mileage(props) {
   };
 
   return (
-    <div className='two-column-grid'>
+    // <div className='two-column-grid'>
 
       <div className="left-column">
         <h1>{props.title}</h1>
@@ -76,20 +76,20 @@ export default function Mileage(props) {
         <h3 />
         <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
 
-        {petrolNeeded && <h3>Petrol Needed (in litres): {petrolNeeded.toFixed(2)} L</h3>}
-        {result && <h3>Per Km Rate: ₹{result}</h3>}
-        {total && <h3>Total Fuel Cost: ₹{total}</h3>}
-        {petrol && <h3>Petrol Needed (in litres): {petrol.toFixed(2)} L</h3>}
+        {petrolNeeded && <h6>Petrol Needed (in litres): {petrolNeeded.toFixed(2)} L</h6>}
+        {result && <h6>Per Km Rate: ₹{result}</h6>}
+        {total && <h6>Total Fuel Cost: ₹{total}</h6>}
+        {petrol && <h6>Petrol Needed (in litres): {petrol.toFixed(2)} L</h6>}
 
-        {ActFuelCost && <h3>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(2)}</h3>}
-        {Tax && <h3>30% Tax Paid to Earn (₹{total}): ₹{(30 / 100) * total}</h3>}
-        {Tax && <h3>60% Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h3>}
-        {Tax && <h3>Total Tax Paid: ₹{((30 / 100) * total) + Tax}</h3>}
+        {ActFuelCost && <h6>Fuel Cost without TAX: ₹{ActFuelCost.toFixed(2)}</h6>}
+        {Tax && <h6>30% Tax Paid to Earn (₹{total}): ₹{(30 / 100) * total}</h6>}
+        {Tax && <h6>60% Tax Paid for Pertol: ₹{Tax.toFixed(2)}</h6>}
+        {Tax && <h6>Total Tax Paid: ₹{((30 / 100) * total) + Tax}</h6>}
 
-        {error && <h3 style={{ color: 'red' }}>{error}</h3>}
+        {error && <h6 style={{ color: 'red' }}>{error}</h6>}
 
       </div>
-      <div className="right-column"><FuelRate /></div>
-    </div>
+      // {/* <div className="right-column"><FuelRate /></div> */}
+    // {/* </div> */}
   );
 }
