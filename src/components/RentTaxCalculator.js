@@ -90,9 +90,9 @@ export default function RentTaxCalculator() {
           className="input"
           value={propertyValue}
           onChange={(e) => { setPropertyValue(handleAmount(e.target.value)); }}
-          placeholder="e.g. 5,71,452"
+          placeholder="e.g. 1,19,05,250"
         />
-       {income && <div style={{ color: 'red', fontSize: '10px', marginTop: '-1px' }}>Note: Property value should be in : {handleAmount((income.replaceAll(",", "") / 0.048).toFixed(0))} - {handleAmount((income.replaceAll(",", "") / 0.072).toFixed(0))}.</div>}
+       {income && <div style={{ color: 'red', fontSize: '10px', marginTop: '-1px' }}>Note: Property value should be in : {handleAmount((income.replaceAll(",", "") / 0.048).toFixed(0))} - {handleAmount((income.replaceAll(",", "") / 0.072).toFixed(0))}</div>}
 
       {income && <h3>{`Less 30% of Deductions: ${formatINR(rebate)}`}</h3>}
 
