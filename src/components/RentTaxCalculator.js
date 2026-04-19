@@ -9,7 +9,7 @@ export default function RentTaxCalculator() {
     const raw1 = e.toString().replaceAll(",", ""); // Remove non-digits
     const raw = raw1.toString().replaceAll(/\D/g, ""); // Remove non-digits
     const formatted = new Intl.NumberFormat('en-IN').format(raw);
-    return (raw === "" ? "" : formatted);
+    return (raw === "" || formatted == 0 ? "" : formatted);
   };
 
   const slabs = [
@@ -27,7 +27,7 @@ export default function RentTaxCalculator() {
   };
 
   const rebate = income.replaceAll(",", "") * 0.3;
-  const numericIncome = parseFloat(income.replaceAll(",", "") - rebate) || 0;
+  const numericIncome = parseFloat(income.replaceAll(",", "") - rebate) || '';
 
   // compute breakdown using a for loop
   const breakdown = [];
@@ -68,7 +68,7 @@ export default function RentTaxCalculator() {
        
 
       </div>
-      {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Annual Income should be in ( 4% - 6% ) : {(propertyValue.replaceAll(",", "") * 0.048).toFixed(0)} - {(propertyValue.replaceAll(",", "") * 0.072).toFixed(0)}.</div>}
+      {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Annual Income should be in ( 4% - 6% ) : {handleAmount((propertyValue.replaceAll(",", "") * 0.048).toFixed(0))} - {handleAmount((propertyValue.replaceAll(",", "") * 0.072).toFixed(0))}.</div>}
       <h1>OR</h1>
       <div className="mb-3">
         <label htmlFor="monthlyIncome">Enter Monthly Income</label>
@@ -80,7 +80,7 @@ export default function RentTaxCalculator() {
           placeholder="e.g. 47,621"
         />
       </div>
-       {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Monthly Income should be in ( 4% - 6% ) : {(propertyValue.replaceAll(",", "") * 0.004).toFixed(0)} - {(propertyValue.replaceAll(",", "") * 0.006).toFixed(0)}.</div>}
+       {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Monthly Income should be in ( 4% - 6% ) : {handleAmount((propertyValue.replaceAll(",", "") * 0.004).toFixed(0))} - {handleAmount((propertyValue.replaceAll(",", "") * 0.006).toFixed(0))}.</div>}
 
       </div>
      
@@ -92,6 +92,8 @@ export default function RentTaxCalculator() {
           onChange={(e) => { setPropertyValue(handleAmount(e.target.value)); }}
           placeholder="e.g. 5,71,452"
         />
+       {income && <div style={{ color: 'red', fontSize: '10px', marginTop: '-1px' }}>Note: Property value should be in : {handleAmount((income.replaceAll(",", "") / 0.048).toFixed(0))} - {handleAmount((income.replaceAll(",", "") / 0.072).toFixed(0))}.</div>}
+
       {income && <h3>{`Less 30% of Deductions: ${formatINR(rebate)}`}</h3>}
 
       {income && <table className="table">
@@ -123,13 +125,13 @@ export default function RentTaxCalculator() {
 
       <div >
         {income && <h3>Summary</h3>}
-        {income && <h6>Gross Income: {formatINR(numericIncome + rebate)}</h6>}
-        {totalTax > 0 && <h6>Total Tax: {formatINR(totalTax)}</h6>}
-        {cess > 0 && <h6>Cess (4%): {formatINR(cess)}</h6>}
-        {taxWithCess > 0 && <h6>Total Tax with Cess: {formatINR(taxWithCess)}</h6>}
-        {taxWithCess > 0 && <h6>After-tax Income: {formatINR(afterTaxIncome)}</h6>}
-        {propertyValue && income && <h6>Rental Yield (4% - 6%) : ${((afterTaxIncome) / (propertyValue.replaceAll(",", "")) * 100).toFixed(2)}%</h6>}
-        {taxWithCess > 0 && <h6>After-tax Monthly Income: {formatINR((afterTaxIncome / 12).toFixed(0))}</h6>}
+        {income && <h6>Income without Tax : {formatINR(numericIncome + rebate)}</h6>}
+        {totalTax > 0 && <h6>Total Tax : {formatINR(totalTax)}</h6>}
+        {cess > 0 && <h6>Cess (4%) : {formatINR(cess)}</h6>}
+        {taxWithCess > 0 && <h6>Total Tax with Cess : {formatINR(taxWithCess)}</h6>}
+        {taxWithCess > 0 && <h6>After-tax Income : {formatINR(afterTaxIncome)}</h6>}
+        {propertyValue && income && <h6>Rental Yield (4% - 6%) : {((afterTaxIncome) / (propertyValue.replaceAll(",", "")) * 100).toFixed(2)}%</h6>}
+        {taxWithCess > 0 && <h6>After-tax Monthly Income : {formatINR((afterTaxIncome / 12).toFixed(0))}</h6>}
       </div>
     </div>
   );

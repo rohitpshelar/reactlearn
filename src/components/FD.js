@@ -50,15 +50,15 @@ export default function FD(props) {
                 <div className="left-column">
                 <div className="mb-3">
                     <label htmlFor="Amount">Amount :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input className="input" value={amount} onChange={handleInput} id="amount" rows="1"></input>
+                    <input className="input" value={amount} onChange={handleInput} id="amount" placeholder="e.g. 2,00,000"  rows="1"></input>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="percent">Interest Rate :</label>
-                    <input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" rows="1"></input>
+                    <input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" placeholder="e.g. 8" rows="1"></input>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="years">Years :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input className="input" value={years} onChange={(e) => setYears(e.target.value)} id="years" rows="1"></input>
+                    <input className="input" value={years} onChange={(e) => setYears(e.target.value)} id="years" placeholder="e.g. 5" rows="1"></input>
                 </div>
                 <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
             </div>
@@ -72,11 +72,11 @@ export default function FD(props) {
                 {amount && percent && years && <h6>Annual compounded Return: {formatINR(((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount) - amount.replaceAll(",", "")) / years)}</h6>}
                 {amount && percent && !years && <h6>Annual Return: {formatINR(annualReturn)}</h6>}
 
-                {amount && percent && years && <h6>Monthly compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount) - amount.replaceAll(",", "")) / years) / 12).toFixed(2)}</h6>}
-                {amount && percent && !years && <h6>Monthly Return: {(annualReturn / 12).toFixed(2)}</h6>}
+                {amount && percent && years && <h6>Monthly compounded Return: {formatINR(((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount) - amount.replaceAll(",", "")) / years) / 12).toFixed(2))}</h6>}
+                {amount && percent && !years && <h6>Monthly Return: {formatINR((annualReturn / 12).toFixed(2))}</h6>}
 
-                {amount && percent && years && <h6>Daily compounded Return: {((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount) - amount.replaceAll(",", "")) / years) / 365).toFixed(2)}</h6>}
-                {amount && percent && !years && <h6>Daily Return: {(annualReturn / 365).toFixed(2)}</h6>}
+                {amount && percent && years && <h6>Daily compounded Return: {formatINR(((((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount) - amount.replaceAll(",", "")) / years) / 365).toFixed(2))}</h6>}
+                {amount && percent && !years && <h6>Daily Return: {formatINR((annualReturn / 365).toFixed(2))}</h6>}
 
                 {amount && percent && years && <h6>For {years} years, simple (non-compounded) return would be {formatINR(annualReturn * numericYears)}.</h6>}
                 {amount && percent && years && <h6>For {years} years, Interest compounded return would be {formatINR((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount) - amount.replaceAll(",", ""))}</h6>}
