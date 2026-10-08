@@ -132,6 +132,11 @@ export default function RentTaxCalculator() {
         {taxWithCess > 0 && <h6>After-tax Income : {formatINR(afterTaxIncome)}</h6>}
         {propertyValue && income && <h6>Rental Yield (4% - 6%) : {((afterTaxIncome) / (propertyValue.replaceAll(",", "")) * 100).toFixed(2)}%</h6>}
         {taxWithCess > 0 && <h6>After-tax Monthly Income : {formatINR((afterTaxIncome / 12).toFixed(0))}</h6>}
+        {taxWithCess > 0 && <h6>After-Tax Weekly Income : {formatINR(((afterTaxIncome / 12)/4).toFixed(0))}</h6>}
+        {taxWithCess > 0 && <h6>After-Tax Daily Income : {formatINR(((afterTaxIncome / 365)).toFixed(0))}</h6>}
+        {taxWithCess > 0 && <h6>After-Tax Hourly Income : {formatINR(((afterTaxIncome / 8760)).toFixed(0))}</h6>}
+        {taxWithCess > 0 && <h6>After-Tax Minute Income : {formatINR(((afterTaxIncome / 525600)).toFixed(0))}</h6>}
+        {taxWithCess > 0 && <h6>After-Tax Second Income : {formatINR(((afterTaxIncome / 31536000)).toFixed(2))}</h6>}
       </div>
     </div>
   );

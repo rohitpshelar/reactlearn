@@ -53,7 +53,7 @@ export default function TaxTable() {
 
   return (
     <div className="component">
-      <h1>New Regime Tax Calculator</h1>
+      <h1>Rent Tax Calculator ( New Regime )</h1>
 
       <div className="mb-3">
         <label htmlFor="income">Enter Annual Income (₹)</label>

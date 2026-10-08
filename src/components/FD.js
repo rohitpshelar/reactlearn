@@ -53,8 +53,8 @@ export default function FD(props) {
                     <input className="input" value={amount} onChange={handleInput} id="amount" placeholder="e.g. 2,00,000"  rows="1"></input>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="percent">Interest Rate :</label>
-                    <input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" placeholder="e.g. 8" rows="1"></input>
+                    <label htmlFor="percent"> Yearly Interest Rate :</label>
+                    <input className="input" value={percent} onChange={(e) => setPercent(e.target.value)} id="percent" placeholder="e.g.. 8" rows="1"></input>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="years">Years :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
