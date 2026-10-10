@@ -58,8 +58,7 @@ export default function FD(props) {
 
     return (
         <>
-            return for {days} days, is {(((schedule.length > 0 ? schedule[schedule.length - 1].ending : numericAmount) - amount.replaceAll(",", "")) / (years * 365)) * days}
-            <div className='component'>
+           <div className='component'>
                 <h4>{props.title} </h4>
                 <div className="left-column">
                     <div className="mb-3">
