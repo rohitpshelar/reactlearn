@@ -39,7 +39,7 @@ export default function Navbar(props) {
         <Nav.Link as={Link} to="/">Home</Nav.Link>
       </Nav.Item> */}
       <Nav.Item>
-        <Nav.Link as={Link} to="/textform">Text Changer</Nav.Link>
+        <Nav.Link as={Link} to="/textform" style={{ color: '#fff' }}>Text Changer</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link as={Link} to="/mileage">Mileage Calculator</Nav.Link>
