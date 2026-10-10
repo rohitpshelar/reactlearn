@@ -101,17 +101,17 @@ export default function FD(props) {
             {amount && percent && years && (<table className="summary-table" style={{ width: '100%', tableLayout: 'fixed' }}>
                 <tbody>
                     <tr>
-                        <td style={{ width: '10%' }}>
+                        <td >
                             Simple Interest Return
                         </td>
-                        <td style={{ width: '10%' }}>
+                        <td >
                             {amount && percent && years && (
                                 <div className="summary-cell-content">
                                     <span>Intrest Rate</span>
                                 </div>
                             )}
                         </td>
-                        <td style={{ width: '30%' }}>
+                        <td >
                             {amount && percent && years && (
                                 <div className="summary-cell-content">
                                     <span>Value</span>
@@ -123,7 +123,10 @@ export default function FD(props) {
                     <tr>
                         <td>{days < 30 && (<span> {days} Day</span>)}
                             {days > 30 && days < 365 && (<span> {numericMonths.toFixed(0)}  Month </span>)} {days > 30 && days < 365 && days - (numericMonths.toFixed(0) * 30) > 0 && (<span> and {days - (numericMonths.toFixed(0) * 30)} Day </span>)}
-                            {days > 364 && (<span> {Math.floor(numericMonths / 12).toFixed(0)}  Year</span>)}  {days > 364 && numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0)) > 0 && (<span> {numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0))}  Month </span>)} {days > 364 && (days - (365 * numericYears.toFixed(0))) > 0 && (<span> and {days - (365 * numericYears.toFixed(0))} Day </span>)}
+                            {days > 364 && (<span> {Math.floor(numericMonths / 12).toFixed(0)}  Year</span>)} 
+                            
+                            {days > 364 && days < 396 && numericMonths  - (12 * Math.floor(numericMonths / (12)).toFixed(0)) > 0 && (<span> {numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0))}  Month </span>)} {days > 364 && days < 396 && (days - (365 * numericYears.toFixed(0)) - (30 * (numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0)))) ) > 0 && (<span> and {days - (365 * numericYears.toFixed(0)) - (30 * (numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0)))) } Day </span>)}
+                            {days > 396 && numericMonths  - (12 * Math.floor(numericMonths / (12)).toFixed(0)) > 0 && (<span> {numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0))}  Month </span>)} {days > 396 && (days - (365 * numericYears.toFixed(0)) - (30 * (numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0)))) + 5) > 0 && (<span> and {days - (365 * numericYears.toFixed(0)) - (30 * (numericMonths - (12 * Math.floor(numericMonths / (12)).toFixed(0)))) + 5} Day </span>)}
                         </td>
                         <td>{percent} %</td>
                         <td> {formatINR(((numericAmount * Math.pow(1 + (numericPercent / 400), numericDays / 90)) - numericAmount).toFixed(0))}</td>
