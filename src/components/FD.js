@@ -63,7 +63,7 @@ export default function FD(props) {
                 <div className="left-column">
                     <div className="mb-3">
                         <TextField id="amount" value={amount} onChange={handleInput}
-                            sx={{ width: 170, maxWidth: '100%' }}
+                            sx={{ width: 150, maxWidth: '100%' }}
                             slotProps={{ input: { startAdornment: <InputAdornment position="start">₹</InputAdornment>, }, }}
                             label="Amount" variant="outlined" placeholder="e.g. 2,00,000" />
                         &nbsp;&nbsp;&nbsp;
@@ -71,21 +71,19 @@ export default function FD(props) {
                             sx={{ width: 140, maxWidth: '100%' }}
                             slotProps={{ input: { endAdornment: <InputAdornment position="end">%</InputAdornment>, }, }}
                             label="Interest Rate" variant="outlined" />
-
                     </div>
-
 
                     <div className="mb-3">
                         <TextField value={years} onChange={(e) => { setYears(e.target.value); setMonths(e.target.value * 12); setDays(e.target.value * 365) }} id="years" placeholder="e.g. 1"
-                            sx={{ width: 70, maxWidth: '100%' }}
+                            sx={{ width: 85, maxWidth: '100%' }}
                             label="Year" variant="outlined" />
                         <label style={{ fontSize: '30px' }}>=</label>
                         <TextField value={months} onChange={(e) => { setMonths(e.target.value); setYears(e.target.value / 12); setDays(e.target.value * 30) }} id="months" placeholder="12"
-                            sx={{ width: 70, maxWidth: '100%' }}
+                            sx={{ width: 95, maxWidth: '100%' }}
                             label="Month" variant="outlined" />
                         <label style={{ fontSize: '30px' }}>=</label>
                         <TextField value={days} onChange={(e) => { setDays(e.target.value); setYears(e.target.value / 365); setMonths(e.target.value / 30) }} id="days" placeholder="365"
-                            sx={{ width: 60, maxWidth: '100%' }}
+                            sx={{ width: 80, maxWidth: '100%' }}
                             label="Day" variant="outlined" />
                     </div>
 
@@ -96,26 +94,26 @@ export default function FD(props) {
             </div>
            {amount && percent && years && (<span>Simple Interest Total Value = {formatINR((numericAmount.toFixed(0) * (Math.pow(1 + (numericPercent / 400), numericDays / 90))).toFixed(0))}</span>)}
            <br />
-            {amount && percent && years && (<span>Quarterly Compound Interest Total Value = {formatINR(runningPrincipal)}</span>)}
+            {amount && percent && years && (<span>Quarterly Compound Interest Total Value = {formatINR(runningPrincipal.toFixed(0))}</span>)}
 
             {amount && percent && years && (<table className="summary-table" style={{ width: '100%', tableLayout: 'fixed' }}>
                 <tbody>
                     <tr>
                         <td >
-                            Simple Interest Return
+                            <b>Simple Interest</b>
                         </td>
                         <td >
                             {amount && percent && years && (
-                                <div className="summary-cell-content">
-                                    <span>Intrest Rate</span>
-                                </div>
+                                <b> <div className="summary-cell-content">
+                                    <span>Interest Rate</span>
+                                </div> </b>
                             )}
                         </td>
                         <td >
                             {amount && percent && years && (
-                                <div className="summary-cell-content">
+                                <b> <div className="summary-cell-content">
                                     <span>Value</span>
-                                </div>
+                                </div> </b>
                             )}
                         </td>
 
@@ -169,7 +167,7 @@ export default function FD(props) {
                         <table className="summary-table" style={{ width: '100%', tableLayout: 'fixed' }}>
                             <thead>
                                 <tr>
-                                    <th>Year</th>
+                                    <th width='18%'>Year</th>
                                     <th>Amount (start)</th>
                                     <th>Interest Earned</th>
                                     <th>Amount (end)</th>
@@ -179,16 +177,16 @@ export default function FD(props) {
                                 {schedule.map(row => (
                                     <tr key={row.year}>
                                         <td>{row.year}</td>
-                                        <td>{formatINR(row.amount)}</td>
-                                        <td>{formatINR(row.interest)}</td>
-                                        <td>{formatINR(row.ending)}</td>
+                                        <td>{formatINR((row.amount).toFixed(0))}</td>
+                                        <td>{formatINR((row.interest).toFixed(0))}</td>
+                                        <td>{formatINR((row.ending).toFixed(0))}</td>
                                     </tr>
                                 ))}
                                 <tr>
                                     <td><strong>Totals</strong></td>
                                     <td></td>
-                                    <td><strong>{formatINR(totalInterest)}</strong></td>
-                                    <td><strong>{formatINR(runningPrincipal)}</strong></td>
+                                    <td><strong>{formatINR((totalInterest).toFixed(0))}</strong></td>
+                                    <td><strong>{formatINR((runningPrincipal).toFixed(0))}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
