@@ -16,6 +16,11 @@
       "src": "rohitpshelar.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "rohitpshelar.png",
+      "type": "image/png",
+      "sizes": "540x960"
     }
   ],
   "start_url": ".",
