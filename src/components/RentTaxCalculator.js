@@ -53,7 +53,7 @@ export default function RentTaxCalculator() {
 
   return (
     <div className="component">
-      <h3>Rent Tax Calculator(New Regime)</h3>
+      <h3>Rent Tax Calculator (New Regime)</h3>
 
       <div className="left-column">
         <div className="mb-3" >

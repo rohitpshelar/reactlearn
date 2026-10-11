@@ -44,7 +44,6 @@ export default function Rent(props) {
                 {months && <h3> Month : {months}</h3>}
                 {amount && months && <h3> Total Rent : {formatINR(amount.replaceAll(",", "") * months)}</h3>}
                 {months && <h3> Yearly Rent : {formatINR(amount.replaceAll(",", "") * 12)}</h3>}
-
             </div>
         </>
     )
