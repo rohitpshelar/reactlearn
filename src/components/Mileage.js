@@ -58,7 +58,6 @@ export default function Mileage(props) {
   };
 
   return (
-    // <div className='two-column-grid'>
     <div className="component">
       <h3>{props.title}</h3>
       <div className="left-column">
@@ -71,25 +70,23 @@ export default function Mileage(props) {
           <input className="input" value={average} placeholder="e.g. 12" onChange={(e) => setAverage(e.target.value)} rows="1" />
         </div>
         <div className="mb-3">
-        <label htmlFor="price">Fuel Price Per Liter</label>
-        <input className="input" value={price} placeholder="e.g. 92" onChange={(e) => setPrice(e.target.value)} rows="1" />
+          <label htmlFor="price">Fuel Price Per Liter</label>
+          <input className="input" value={price} placeholder="e.g. 92" onChange={(e) => setPrice(e.target.value)} rows="1" />
+        </div>
+        <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
       </div>
-      <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
-    </div>
-      { petrolNeeded && <h6>Fuel Needed : {petrolNeeded.toFixed(2)} ( kg , L )</h6> }
-  { result && <h6>Per Km Rate: ₹ {result}</h6> }
-  { total && <h6>Total Fuel Cost: ₹ {total}</h6> }
-  { petrol && <h6>Petrol Needed (in litres): {petrol.toFixed(2)} L</h6> }
+      {petrolNeeded && <h6>Fuel Needed : {petrolNeeded.toFixed(2)} ( kg , L )</h6>}
+      {result && <h6>Per Km Rate: ₹ {result}</h6>}
+      {total && <h6>Total Fuel Cost: ₹ {total}</h6>}
+      {petrol && <h6>Petrol Needed (in litres): {petrol.toFixed(2)} L</h6>}
 
-  { ActFuelCost && <h6>Fuel Cost without TAX: ₹ {ActFuelCost.toFixed(0)}</h6> }
-  { Tax && <h6>30% Tax Paid to Earn (₹ {total}): ₹ {((30 / 100) * total).toFixed(0)}</h6> }
-  { Tax && <h6>60% Tax Paid for Pertol: ₹ {Tax.toFixed(0)}</h6> }
-  { Tax && <h6>Total Tax Paid: ₹ {(((30 / 100) * total) + Tax).toFixed(0)}</h6> }
+      {ActFuelCost && <h6>Fuel Cost without TAX: ₹ {ActFuelCost.toFixed(0)}</h6>}
+      {Tax && <h6>30% Tax Paid to Earn (₹ {total}): ₹ {((30 / 100) * total).toFixed(0)}</h6>}
+      {Tax && <h6>60% Tax Paid for Pertol: ₹ {Tax.toFixed(0)}</h6>}
+      {Tax && <h6>Total Tax Paid: ₹ {(((30 / 100) * total) + Tax).toFixed(0)}</h6>}
 
-  { error && <h6 style={{ color: 'red' }}>{error}</h6> }
+      {error && <h6 style={{ color: 'red' }}>{error}</h6>}
 
     </div >
-    // {/* <div className="right-column"><FuelRate /></div> */}
-    // {/* </div> */}
   );
 }

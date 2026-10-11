@@ -55,44 +55,44 @@ export default function RentTaxCalculator() {
     <div className="component">
       <h3>Rent Tax Calculator(New Regime)</h3>
 
-<div className="left-column">
-      <div className="mb-3" >
-        <label htmlFor="income">Enter Annual Income (₹)</label>
-        <input
-          id="income"
-          className="input"
-          value={income}
-          onChange={(e) => { setIncome(handleAmount(e.target.value)); setMonthlyIncome(handleAmount(((e.target.value).replaceAll(",", "") / 12).toFixed(0))) }}
-          placeholder="e.g. 5,71,452"
-        />
-       
+      <div className="left-column">
+        <div className="mb-3" >
+          <label htmlFor="income">Enter Annual Income (₹)</label>
+          <input
+            id="income"
+            className="input"
+            value={income}
+            onChange={(e) => { setIncome(handleAmount(e.target.value)); setMonthlyIncome(handleAmount(((e.target.value).replaceAll(",", "") / 12).toFixed(0))) }}
+            placeholder="e.g. 5,71,452"
+          />
+
+
+        </div>
+        {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Annual Income should be in ( 4% - 6% ) : {handleAmount((propertyValue.replaceAll(",", "") * 0.048).toFixed(0))} - {handleAmount((propertyValue.replaceAll(",", "") * 0.072).toFixed(0))}.</div>}
+        <h1>OR</h1>
+        <div className="mb-3">
+          <label htmlFor="monthlyIncome">Enter Monthly Income</label>
+          <input
+            id="monthlyIncome"
+            className="input"
+            value={monthlyIncome}
+            onChange={(e) => { setIncome(handleAmount((e.target.value).replaceAll(",", "") * 12)); setMonthlyIncome(handleAmount((e.target.value))) }}
+            placeholder="e.g. 47,621"
+          />
+        </div>
+        {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Monthly Income should be in ( 4% - 6% ) : {handleAmount((propertyValue.replaceAll(",", "") * 0.004).toFixed(0))} - {handleAmount((propertyValue.replaceAll(",", "") * 0.006).toFixed(0))}.</div>}
 
       </div>
-      {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Annual Income should be in ( 4% - 6% ) : {handleAmount((propertyValue.replaceAll(",", "") * 0.048).toFixed(0))} - {handleAmount((propertyValue.replaceAll(",", "") * 0.072).toFixed(0))}.</div>}
-      <h1>OR</h1>
-      <div className="mb-3">
-        <label htmlFor="monthlyIncome">Enter Monthly Income</label>
-        <input
-          id="monthlyIncome"
-          className="input"
-          value={monthlyIncome}
-          onChange={(e) => { setIncome(handleAmount((e.target.value).replaceAll(",", "") * 12)); setMonthlyIncome(handleAmount((e.target.value))) }}
-          placeholder="e.g. 47,621"
-        />
-      </div>
-       {propertyValue && <div style={{ color: 'red', fontSize: '10px', marginTop: '-18px' }}>Note: Monthly Income should be in ( 4% - 6% ) : {handleAmount((propertyValue.replaceAll(",", "") * 0.004).toFixed(0))} - {handleAmount((propertyValue.replaceAll(",", "") * 0.006).toFixed(0))}.</div>}
 
-      </div>
-     
-       <label htmlFor="propertyValue">Property value (₹)</label>
-        <input
-          id="propertyValue"
-          className="input"
-          value={propertyValue}
-          onChange={(e) => { setPropertyValue(handleAmount(e.target.value)); }}
-          placeholder="e.g. 1,19,05,250"
-        />
-       {income && <div style={{ color: 'red', fontSize: '10px', marginTop: '-1px' }}>Note: Property value should be in : {handleAmount((income.replaceAll(",", "") / 0.048).toFixed(0))} - {handleAmount((income.replaceAll(",", "") / 0.072).toFixed(0))}</div>}
+      <label htmlFor="propertyValue">Property value (₹)</label>
+      <input
+        id="propertyValue"
+        className="input"
+        value={propertyValue}
+        onChange={(e) => { setPropertyValue(handleAmount(e.target.value)); }}
+        placeholder="e.g. 1,19,05,250"
+      />
+      {income && <div style={{ color: 'red', fontSize: '10px', marginTop: '-1px' }}>Note: Property value should be in : {handleAmount((income.replaceAll(",", "") / 0.048).toFixed(0))} - {handleAmount((income.replaceAll(",", "") / 0.072).toFixed(0))}</div>}
 
       {income && <h3>{`Less 30% of Deductions: ${formatINR(rebate)}`}</h3>}
 
@@ -132,7 +132,7 @@ export default function RentTaxCalculator() {
         {taxWithCess > 0 && <h6>After-tax Income : {formatINR(afterTaxIncome)}</h6>}
         {propertyValue && income && <h6>Rental Yield (4% - 6%) : {((afterTaxIncome) / (propertyValue.replaceAll(",", "")) * 100).toFixed(2)}%</h6>}
         {taxWithCess > 0 && <h6>After-tax Monthly Income : {formatINR((afterTaxIncome / 12).toFixed(0))}</h6>}
-        {taxWithCess > 0 && <h6>After-Tax Weekly Income : {formatINR(((afterTaxIncome / 12)/4).toFixed(0))}</h6>}
+        {taxWithCess > 0 && <h6>After-Tax Weekly Income : {formatINR(((afterTaxIncome / 12) / 4).toFixed(0))}</h6>}
         {taxWithCess > 0 && <h6>After-Tax Daily Income : {formatINR(((afterTaxIncome / 365)).toFixed(0))}</h6>}
         {taxWithCess > 0 && <h6>After-Tax Hourly Income : {formatINR(((afterTaxIncome / 8760)).toFixed(0))}</h6>}
         {taxWithCess > 0 && <h6>After-Tax Minute Income : {formatINR(((afterTaxIncome / 525600)).toFixed(0))}</h6>}

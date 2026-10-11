@@ -26,6 +26,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
+    "postbuild": "node scripts/copy-404.js",
     "postinstall": "patch-package"
   },
   "eslintConfig": {
