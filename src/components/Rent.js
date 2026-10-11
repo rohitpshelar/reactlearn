@@ -5,10 +5,6 @@ export default function Rent(props) {
     const [months, setMonths] = useState('');
     const [deposit, setDeposit] = useState('');
 
-    const handleInput = (e) => {
-
-    };
-
     const handleAmount = (e) => {
         const raw = e.target.value.replace(/\D/g, ""); // Remove non-digits
         const formatted = new Intl.NumberFormat('en-IN').format(raw);

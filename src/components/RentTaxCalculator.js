@@ -9,7 +9,7 @@ export default function RentTaxCalculator() {
     const raw1 = e.toString().replaceAll(",", ""); // Remove non-digits
     const raw = raw1.toString().replaceAll(/\D/g, ""); // Remove non-digits
     const formatted = new Intl.NumberFormat('en-IN').format(raw);
-    return (raw === "" || formatted == 0 ? "" : formatted);
+    return (raw === "" || formatted === 0 ? "" : formatted);
   };
 
   const slabs = [

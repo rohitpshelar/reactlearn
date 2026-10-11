@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './component.css';
-// import FuelRate from './FuelRate';
-
-// state
-
 
 export default function Mileage(props) {
   const [km, setKm] = useState('');
@@ -78,7 +74,6 @@ export default function Mileage(props) {
         <label htmlFor="price">Fuel Price Per Liter</label>
         <input className="input" value={price} placeholder="e.g. 92" onChange={(e) => setPrice(e.target.value)} rows="1" />
       </div>
-      <h3 />
       <button className='btn btn-primary' onClick={handleClick}>Calculate</button>
     </div>
       { petrolNeeded && <h6>Fuel Needed : {petrolNeeded.toFixed(2)} ( kg , L )</h6> }
